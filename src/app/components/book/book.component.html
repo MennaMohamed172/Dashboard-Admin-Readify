@@ -159,6 +159,14 @@
   </div>
 
   <!-- Second Table (All Books) -->
+  <div class="form-group row mb-2">
+    <label for="searchTitle" class="col-md-2 col-sm-4 col-form-label">Search by Title:</label>
+    <div class="col-md-10 col-sm-8">
+      <input type="text" class="form-control" id="searchTitle" placeholder="Enter Book Title" [(ngModel)]="searchTitle" (input)="searchByTitle()">
+    </div>
+  </div>
+  
+  
   <h3 class="title text-center fw-bold mb-3 mt-4">All Books</h3>
   
   @if(bookJsonData.length !== 0) {
@@ -171,8 +179,8 @@
           <th scope="col">Category</th>
           <th scope="col">Cover Image</th>
           <th scope="col">BookPDF</th>
-          <th scope="col" >num of Reviews</th>
-          <th scope="col" class="w-100">Avg Rating</th>
+          <th scope="col">num of Reviews</th>
+          <th scope="col">num ofRating</th>
           <th scope="col">Update</th>
           <th scope="col">Delete</th>
         </tr>
@@ -189,9 +197,7 @@
           </td>
           <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
           <td>{{ book.numReviews }}</td>
-          <!-- <td>{{ book.rating }}</td> -->
           <td [innerHTML]="generateStarRating(book.rating)"></td>
-
           <td><button class="btn btn-secondary btn-sm" (click)="updateBook(book._id)"><i class="fas fa-edit"></i></button></td>
           <td><button class="btn btn-danger btn-sm" (click)="deletebook(book._id)"><i class="fas fa-trash-alt"></i></button></td>
         </tr>

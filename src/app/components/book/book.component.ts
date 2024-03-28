@@ -24,6 +24,8 @@ import { map } from 'rxjs/operators';
   styleUrl: './book.component.css',
 })
 export class BookComponent implements OnInit {
+  searchTitle: string = ''; // Input field value for searching book title
+  searchResults: any[] = []; // Array to store search results
   currentPage: number = 1; // Current page number
   booksPerPage: number = 4;
   apiUrl = 'http://localhost:4000/book'; // Define apiUrl here
@@ -143,7 +145,7 @@ export class BookComponent implements OnInit {
 
   fetchReviewsForBooks(): void {
     // Iterate over each book and fetch reviews
-    this.bookJsonData.forEach((book) => {
+    this.bookJsonData.forEach(book => {
       // Assuming you have the book ID available in 'book._id'
       this.BookService.getReviewsForBook(book._id).subscribe({
         next: (data: any) => {
@@ -151,10 +153,11 @@ export class BookComponent implements OnInit {
         },
         error: (error: any) => {
           console.error('Error fetching reviews for book:', book._id, error);
-        },
+        }
       });
     });
   }
+  
   paginateBooks(): void {
     const startIndex = (this.currentPage - 1) * this.booksPerPage;
     const endIndex = startIndex + this.booksPerPage;
@@ -188,9 +191,21 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getAllBooks();
     this.fetchCategories();
+  
+    // Check if the element with id 'searchTitle' exists before adding event listener
+    // const searchInputElement = document.getElementById('searchTitle');
+    // if (searchInputElement) {
+    //   searchInputElement.addEventListener('input', (event) => {
+    //     const inputValue = (event.target as HTMLInputElement).value.trim();
+    //     this.searchTitle = inputValue;
+    //     this.searchBooks();
+    //   });
+    // }
   }
+  
 
   addBook() {
     const formData = new FormData();
@@ -276,11 +291,14 @@ export class BookComponent implements OnInit {
         newDiscount: updatedBook.discount,
         newAuthor: updatedBook.Author,
         newCategory: updatedBook.category,
+        newBookImage: updatedBook.bookImage.url, // Add this line to populate the image field
+        newbookPdf: updatedBook.bookPdf.url, // Add this line to populate the PDF field
       };
       // Set the flag to indicate update mode
       this.updateDone = true;
     }
   }
+  
 
   // Method to update the book
   updateBookData() {
@@ -328,17 +346,34 @@ export class BookComponent implements OnInit {
     const filledStars = Math.floor(numRatings); // Get the number of filled stars
     const emptyStars = maxRating - filledStars; // Get the number of empty stars
     let stars = '';
-
+  
     // Generate filled stars
     for (let i = 0; i < filledStars; i++) {
       stars += '<i class="fas fa-star"></i>';
     }
-
+  
     // Generate empty stars
     for (let i = 0; i < emptyStars; i++) {
       stars += '<i class="far fa-star"></i>';
     }
-
+  
     return stars;
   }
-}
+  searchByTitle(): void {
+    if (this.searchTitle.trim() !== '') {
+      this.BookService.searchBooksByTitle(this.searchTitle).subscribe({
+        next: (data: any) => {
+          this.bookJsonData = data; // Assuming the response is directly the array of books
+          this.paginateBooks(); // Pagination logic if needed
+        },
+        error: (error: any) => {
+          console.error('Error fetching books by title:', error);
+        }
+      });
+    } else {
+      // If the search input is empty, fetch all books
+      this.getAllBooks();
+    }
+  }
+  
+  }

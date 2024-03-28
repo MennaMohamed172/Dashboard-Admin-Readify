@@ -20,6 +20,10 @@ export class BookService {
   getAllbook(): Observable<any> {
     return this.http.get(`http://localhost:4000/book/AllBook?limit=50&page=1`);
   }
+  searchBooksByTitle(title: string): Observable<any> {
+    return this.http.get<any>('http://localhost:4000/book/search/' + title);
+  }
+  
 
   deletebook(bookId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${bookId}`);
