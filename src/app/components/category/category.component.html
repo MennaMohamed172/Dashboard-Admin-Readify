@@ -1,18 +1,49 @@
 <div class="container">
   <h3 class="text-center mt-4">Add New Category</h3>
   <!-- Add New Category Form -->
-  <form class="mt-5" #myForm="ngForm" (ngSubmit)="handleSubmit(myForm)" enctype="multipart/form-data">
+  <form
+    class="mt-5"
+    #myForm="ngForm"
+    (ngSubmit)="handleSubmit(myForm)"
+    enctype="multipart/form-data"
+  >
     <div class="form-group mt-3">
-      <input type="text" class="form-control input-box w-50 text-center m-auto mb-1" id="newCategory" name="newCategory" placeholder="Enter category name" ngModel required>
+      <input
+        type="text"
+        class="form-control input-box w-50 text-center m-auto mb-1"
+        id="newCategory"
+        name="newCategory"
+        placeholder="Enter category name"
+        ngModel
+        required
+      />
     </div>
 
     <div class="form-group mt-3">
-      <input type="file" class="form-control input-box w-50 text-center m-auto " id="categoryImage" name="categoryImage" accept="image/*" (change)="onFileSelected($event)" required>
+      <input
+        type="file"
+        class="form-control input-box w-50 text-center m-auto"
+        id="categoryImage"
+        name="categoryImage"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        required
+      />
     </div>
     <div>
-      <button type="submit" class="btn btn-secondary d-block m-auto w-25 mt-3 mb-5">Add Category</button>
+      <button
+        type="submit"
+        class="btn btn-secondary d-block m-auto w-25 mt-3 mb-5"
+      >
+        Add Category
+      </button>
     </div>
   </form>
+  <div *ngIf="errorMessage" class="text-center">
+    <p class="text-danger" style="font-size: 1.05rem; font-weight: bold">
+      {{ errorMessage }}
+    </p>
+  </div>
 
   <h3 class="text-center mt-4">Get All Categories</h3>
   <!-- Categories Table -->
@@ -31,24 +62,34 @@
           <!-- Display category details -->
           <td class="text-left align-middle">{{ category.categoryName }}</td>
           <td class="text-left align-middle">
-            <img [src]="category.categoryImage" alt="{{ category.categoryName }}" style="max-width: 100px; max-height: 100px;">
+            <img
+              [src]="category.categoryImage"
+              alt="{{ category.categoryName }}"
+              style="max-width: 100px; max-height: 100px"
+            />
           </td>
           <td class="text-left align-middle">
             <!-- Add your actions buttons here -->
-            <button class="btn btn-danger mt-2 action-button" (click)="handleDelete(category._id)">
-              <i class="fas fa-trash"></i> <!-- Font Awesome delete icon -->
+            <button
+              class="btn btn-danger mt-2 action-button"
+              (click)="handleDelete(category._id)"
+            >
+              <i class="fas fa-trash"></i>
+              <!-- Font Awesome delete icon -->
             </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+
   <!-- Pagination Buttons -->
   <div class="pagination-controls text-center">
     <div class="row">
       <div class="col">
-        <button class="btn btn-secondary" (click)="previousPage()">Previous</button>
+        <button class="btn btn-secondary" (click)="previousPage()">
+          Previous
+        </button>
       </div>
       <div class="col">
         <span class="mx-3">Page {{ currentPage }} of {{ totalPages }}</span>
