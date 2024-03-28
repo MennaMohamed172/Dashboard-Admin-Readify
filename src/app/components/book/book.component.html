@@ -1,0 +1,215 @@
+<div class="container">
+  <app-chart></app-chart>
+
+  <div class="card mb-4">
+    <div class="card-header" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#a8896c;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      ">
+
+      {{ updateDone ? "Update Book" : "Add New Book" }}
+    </div>
+
+    <div class="card-body">
+      <form className="mt-5" #addBookForm="ngForm" (ngSubmit)="updateDone ? updateBook() : addBook()">
+        <div class="form-group row mb-2">
+          <label for="bookTitle" class="col-md-2 col-sm-4 col-form-label">
+            Title:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control w-50 text-center m-auto mb-1" id="bookTitle" name="bookTitle" placeholder="Enter Book Title"
+              required minlength="3" [(ngModel)]="books.newBookTitle" #bookTitleInput="ngModel" [ngClass]="{
+                'is-invalid':
+                  (bookTitleInput.touched || bookTitleInput.dirty) &&
+                  bookTitleInput.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookTitleInput.errors?.['required']">Please enter Book Title</span>
+              <span *ngIf="bookTitleInput.errors?.['minlength']">Book Title must be longer than 3 characters</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label for="bookDescription" class="col-md-2 col-sm-4 col-form-label">
+            Book Description:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="bookDescription" name="bookDescription" min="1"
+              placeholder="Enter book Description " required [(ngModel)]="books.newBookDescription" #bookDescription="ngModel"
+              [ngClass]="{
+                'is-invalid':
+                  (bookDescription.touched || bookDescription.dirty) &&
+                  bookDescription.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookDescription.errors?.['required']">Please enter Book Description</span>
+              <span *ngIf="bookDescription.errors?.['min']">Book Pages must be more than 0</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="bookPrice" class="col-md-2 col-sm-4 col-form-label">
+            Enter Price:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="number" class="form-control" id="bookPrice" name="bookPrice"
+              placeholder="Enter Book price" [(ngModel)]="books.newBookPrice"
+              #bookPrice="ngModel" [ngClass]="{
+                'is-invalid':
+                  (bookPrice.touched || bookPrice.dirty) &&
+                  bookPrice.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="bookPrice.errors?.['required']">Please enter book Price</span>
+            </span>
+          </div>
+        </div>
+        <!-- <div class="form-group row mb-2">
+          <label for="price" class="col-md-2 col-sm-4 col-form-label">
+          Enter Discount:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="number" class="form-control" id="discount" name="discount" min="1" placeholder="Enter Book Discount "
+              required [(ngModel)]="books.newDiscount" #discount="ngModel" [ngClass]="{
+                'is-invalid':
+                  (discount.touched || discount.dirty) && discount.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="discount.errors?.['required']">Please enter Discount </span>
+            </span>
+          </div>
+        </div> -->
+        <!-- Book Image -->
+        <div class="form-group row mb-2">
+          <label for="bookImage" class="col-md-2 col-sm-4 col-form-label">
+            Cover Image:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="file" class="form-control" id="bookImage" placeholder="Upload An Image" name="bookImage" required (change)="onFileSelected($event)" />
+
+            <!-- <input type="file" class="form-control" id="bookImage" placeholder="Upload An Image" name="bookImage" required
+              (change)="onFileSelected($event)" /> -->
+          </div>
+        </div>
+       <div class="form-group row mb-2">
+  <label for="category" class="col-md-2 col-sm-4 col-form-label">Category:</label>
+  <div class="col-md-10 col-sm-8">
+    <select class="form-select" id="category" name="category" required [(ngModel)]="books.newCategory">
+      <option *ngFor="let category of categoryNames" [value]="category._id">{{category.categoryName }}</option>
+    </select>
+  </div>
+       </div>  
+
+        
+        
+
+        <!-- <div class="form-group row mb-2">
+          <label for="category" class="col-md-2 col-sm-4 col-form-label">Category:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="category" name="category" placeholder="Enter A Book Category"
+              required [(ngModel)]="books.newCategory" #category="ngModel" [ngClass]="{
+                'is-invalid':
+                  (category.touched || category.dirty) &&
+                  category.invalid
+              }" />
+            <span class="invalid-feedback">
+
+            </span>
+          </div>
+        </div>
+
+         -->
+        <!-- Book PDF -->
+        <div class="form-group row mb-2">
+          <label for="bookPdf" class="col-md-2 col-sm-4 col-form-label">
+            Upload PDF:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="file" class="form-control" id="bookPdf" placeholder="Upload PDF" name="bookPdf" required (change)="onPdfSelected($event)" />
+
+            <!-- <input type="file" class="form-control" id="bookPdf" placeholder="Upload PDF" name="bookPdf" required
+              (change)="onPdfSelected($event)" /> -->
+          </div>
+        </div>
+
+        <!-- Book Author -->
+        <div class="form-group row mb-2">
+          <label for="Author" class="col-md-2 col-sm-4 col-form-label">Author:</label>
+          <div class="col-md-10 col-sm-8">
+            <input type="text" class="form-control" id="Author" name="Author" placeholder="Enter Author Name" required
+              [(ngModel)]="books.newAuthor" #Author="ngModel" [ngClass]="{
+                'is-invalid':
+                  (Author.touched || Author.dirty) &&
+                  Author.invalid
+              }" />
+            <span class="invalid-feedback">
+              <span *ngIf="Author.errors?.['required']">Please enter Book Author</span>
+            </span>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-secondary btn-sm" [disabled]="addBookForm.invalid || !imageSelected">
+          Submit
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Second Table (All Books) -->
+  <h3 class="title text-center fw-bold mb-3 mt-4">All Books</h3>
+  
+  @if(bookJsonData.length !== 0) {
+    <table class="table table-striped custom-table">
+            <thead class="thead-dark">
+        <tr>
+          <th scope="col">Book Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Author</th>
+          <th scope="col">Category</th>
+          <th scope="col">Cover Image</th>
+          <th scope="col">BookPDF</th>
+          <th scope="col" >num of Reviews</th>
+          <th scope="col" class="w-100">Avg Rating</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of displayedBooks; trackBy: trackById">
+          <td>{{ book.bookTitle }}</td>
+          <td>${{ book.bookPrice }}</td>
+          <td>{{ book.Author }}</td>
+          <!-- <td>{{ book.category.categoryName }}</td> -->
+          <td>{{ book.category ? book.category.categoryName : 'N/A' }}</td>
+          <td>
+            <img src="{{ book.bookImage.url }}" alt="Book Cover" style="max-width: 100px; max-height: 100px;">
+          </td>
+          <td><a href="{{book.bookPdf.url}}" target="_blank">View PDF</a></td>
+          <td>{{ book.numReviews }}</td>
+          <!-- <td>{{ book.rating }}</td> -->
+          <td [innerHTML]="generateStarRating(book.rating)"></td>
+
+          <td><button class="btn btn-secondary btn-sm" (click)="updateBook(book._id)"><i class="fas fa-edit"></i></button></td>
+          <td><button class="btn btn-danger btn-sm" (click)="deletebook(book._id)"><i class="fas fa-trash-alt"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination-controls text-center">
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary" (click)="previousPage()">Previous</button>
+        </div>
+        <div class="col">
+          <span class="mx-3">Page {{ currentPage }} of {{ totalPages }}</span>
+        </div>
+        <div class="col">
+          <button class="btn btn-secondary" (click)="nextPage()">Next</button>
+        </div>
+      </div>
+    </div>
+    
+  }
+</div>

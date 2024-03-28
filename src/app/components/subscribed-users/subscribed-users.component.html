@@ -1,0 +1,15 @@
+<div class="container">
+  <h2 class="text-center mt-4">Subscribed Users</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of subscribedUsers">
+        <td>{{ user.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+External CSS File
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px; /* Adjust padding to decrease cell height */
+    text-align: left;
+    line-height: 1.2; /* Adjust line height to decrease cell height */
+  }
+  
+
+  .custom-table th {
+    background-color: #a8896c;
+    color: white;
+  }
+
+  .text-left {
+    text-align: left;
+  }
+
+  .align-middle {
+    vertical-align: middle;
+  }
+
+  .table-btns {
+    background-color: #a8896c;
+  }
+
+  .input-box {
+    background-color: #d8cbbb;
+    margin-bottom: 10px; /* Decrease margin bottom */
+    padding: 6px; /* Decrease padding */
+  }
+  .btn-secondary {
+    background-color: #a8896c;
+    color: white;
+  }
+

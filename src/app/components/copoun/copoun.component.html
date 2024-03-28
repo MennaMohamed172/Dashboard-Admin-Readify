@@ -1,0 +1,87 @@
+<div class="container mt-5">
+
+  <h3 class="title text-center fw-bold mb-3 mt-5"></h3>
+
+  @if(copounJsonData.length !==0){
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Coupon ID</th>
+          <th scope="col">Coupon Code</th>
+          <th scope="col">Coupon Value</th>
+          <th scope="col">Expire Date</th>
+          <!-- <th scope="col">Update</th> -->
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(copoun of copounJsonData ; track copoun._id){
+          <tr>
+            <th scope="row">{{(copoun._id)}}</th>
+            <td>{{copoun.couponCode}}</td>
+            <td>{{copoun.couponValue}}</td>
+            <td style="width: 108px;">{{(copoun.expireIn).slice(0,10)}}</td>
+            <!-- <td><button class="btn btn-primary btn-sm" (click)="updateButton(copoun._id)">Update</button></td> -->
+            <td><button class="btn btn-danger btn-sm" (click)="deleteCopoun(copoun._id)" >Delete</button></td>
+          </tr>
+        }
+        @empty {
+          <h3 class="text-center mt-3 mb-3 fw-bold" style="padding-top:100px; padding-bottom: 20px;">No coupon Available</h3>
+        }
+      </tbody>
+    </table>
+  }
+
+
+  <h3 class="text-center mt-3 mb-3 fw-bold mt-5">Add New Coupon</h3>
+
+  <form class="mt-5" [formGroup]="addCopounForm" (ngSubmit)="updateMode ? updateCopoun() : createCopoun()">
+    <div class="form-group">
+      <input type="text" class="form-control w-50 text-center m-auto mb-3" id="exampleInputcopoun" placeholder="Enter coupon code"
+        required formControlName="couponCode" [ngClass]="{ 'is-invalid': couponCode?.invalid && (couponCode?.touched || couponCode?.dirty) }"
+      />
+      <div id="couponCodeHelp" class="form-text">
+        @if(couponCode?.invalid &&(couponCode?.touched || couponCode?.dirty)){
+          @if(couponCode?.errors?.["required"] ){
+            <div class="text-center mb-2">
+              <span class="text-danger fw-bold">Enter your coupon code.</span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="number" class="form-control w-50 text-center m-auto mb-3" id="exampleInputcopounValue" placeholder="Enter coupon value"
+        required formControlName="couponValue" [ngClass]="{ 'is-invalid': couponValue?.invalid && (couponValue?.touched || couponValue?.dirty) }"
+      />
+      <div id="couponValueHelp" class="form-text">
+        @if(couponValue?.invalid &&(couponValue?.touched || couponValue?.dirty)){
+          @if(couponValue?.errors?.["required"] ){
+            <div class="text-center mb-2">
+              <span class="text-danger fw-bold">Enter your coupon value.</span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="date" class="form-control w-50 text-center m-auto mb-3" id="exampleInputexpireIn" placeholder="Enter expire date"
+        required formControlName="expireIn" [ngClass]="{ 'is-invalid': expireIn?.invalid && (expireIn?.touched || expireIn?.dirty) }" value="2024-03-01"
+      />
+      <div id="expireInHelp" class="form-text">
+        @if(expireIn?.invalid &&(expireIn?.touched || expireIn?.dirty)){
+          @if(expireIn?.errors?.["required"] ){
+            <div class="text-center mb-2">
+              <span class="text-danger fw-bold">Enter expire date.</span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg d-block m-auto w-25 mt-3 mb-5"> {{updateMode ? 'Update' : 'Add'}} </button>
+  </form>
+
+</div>

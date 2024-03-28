@@ -1,0 +1,28 @@
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Adjust padding to increase cell height */
+    text-align: left;
+    line-height: 1.5; /* Adjust line height to increase cell height */
+  }
+  
+  .custom-table th {
+    background-color: #a8896c; /* Set background color for table header */
+    color: white;
+  }
+  
+  .custom-button {
+    background-color: #a8896c;
+    border-color: #d8cbbb;
+  }
+  
+  .custom-button:hover {
+    background-color: #b64926;
+    border-color: #b64926;
+  }
+  

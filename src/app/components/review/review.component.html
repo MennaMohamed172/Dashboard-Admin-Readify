@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <h3 class="title text-center fw-bold mb-3">All Reviews</h3>
+  <table class="table table-striped custom-table">
+    <thead class="custom-thead">
+      <tr>
+        <th scope="col">Book Title</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let review of reviews">
+        <td>{{ review.book?.bookTitle }}</td>
+        <td>{{ review.comment }}</td>
+        <td>{{ review.rating }}</td>
+        <td><button class="btn btn-danger btn-sm " (click)="handleDelete(review._id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

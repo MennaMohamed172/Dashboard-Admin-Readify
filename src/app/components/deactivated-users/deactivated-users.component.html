@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h3 class="title text-center fw-bold mb-3">Deactivated Users</h3>
+    <table class="table custom-table">
+      <thead style="background-color: #b64926; color: white;">
+        <tr>
+          <th scope="col">User Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Activate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of deactivatedUsers">
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td><button class="btn btn-success btn-sm" (click)="activateUser(user._id)">Activate</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

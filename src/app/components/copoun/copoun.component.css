@@ -1,0 +1,24 @@
+/* External CSS File */
+
+.btn-primary {
+    background-color: #a8896c;
+    border-color: #a8896c;
+  }
+  
+  .btn-primary:hover {
+    background-color: #9c7b59;
+    border-color: #9c7b59;
+  }
+  
+  .form-control {
+    background-color: #d8cbbb;
+    border-color: #d8cbbb;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="date"] {
+    margin-bottom: 40px !important; /* Increase space between input boxes */
+    height: 60px !important;
+  }
+  

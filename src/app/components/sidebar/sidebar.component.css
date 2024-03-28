@@ -1,0 +1,40 @@
+.sidebar-container {
+  height: 100vh; /* Set the height to cover the entire viewport */
+  margin: 0; /* Remove any margins */
+  padding: 0; /* Remove any padding */
+  display: flex; /* Use flexbox for layout */
+  position: fixed;
+}
+
+.sidebar {
+  background-color:  #d8cbbb; /* Set background color */
+  width: 250px;
+  cursor: pointer;/* Set sidebar width */
+}
+
+.sidebar-content {
+  padding: 20px; /* Add padding for content */
+}
+
+.user-panel .info a {
+  color: #fff; /* Set text color to white */
+}
+
+.nav-sidebar .nav-link {
+  color: #fff; /* Set text color to white */
+  font-size: larger;
+  background-color:#a8896c;
+  margin-bottom: 7px;
+  box-shadow: 13px 0px 13px -2px rgba(0, 0, 0, 0.42);
+}
+
+.nav-sidebar .nav-link:hover {
+  background-color: #495057; /* Set background color on hover */
+}
+.icon-blue {
+  color: #d8cbbb;
+}
+
+.icon-green {
+  color:  #eee7de;
+}

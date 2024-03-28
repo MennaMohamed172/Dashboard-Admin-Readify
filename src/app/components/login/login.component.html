@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="../../../assets/log.svg" alt="Login Image" class="login-image" style="margin-top: 20px;">
+    </div>
+    <div class="col-md-6 d-flex justify-content-center align-items-center">
+      <div class="p-5 text-center form" style="width: 100%;">
+
+        <h3 class="text-center">LogIn</h3>
+        <form [formGroup]="userLogin" (ngSubmit)="login()">
+
+          <span style="font-weight: bolder; font-size: x-large; color: red;">
+            <span *ngIf="validData">PLEASE ENTER VALID DATA !</span>
+          </span>
+
+          <div class="form-group row mb-2">
+            <label for="email" class="col-md-2 col-form-label">Email</label>
+            <div class="col-md-8">
+              <input
+                formControlName="email"
+                id="email"
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="E-MAIL ADDRESS"
+                [ngClass]="{ 'is-invalid': (email?.touched || email?.dirty) && email?.invalid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="email?.errors?.['required']">Please enter your email</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label for="password" class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-8">
+              <input
+                formControlName="password"
+                id="password"
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="PASSWORD"
+                [ngClass]="{ 'is-invalid': (password?.touched || password?.dirty) && password?.invalid }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="password?.errors?.['required']">Please enter your password</span>
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secandory pl-2 pr-2 col-8 custom-button">
+            Login
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

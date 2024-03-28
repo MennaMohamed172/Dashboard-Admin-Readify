@@ -1,0 +1,27 @@
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #ddd;
+  /* padding: 12px; Adjust padding to increase cell height */
+  text-align: left;
+  line-height: 1.5;
+  /* Adjust line height to increase cell height */
+}
+
+.custom-table th {
+  background-color: #a8896c;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #a8896c;
+  color: white;
+}
+
+.star-filled {
+  color: yellow;
+}

@@ -1,0 +1,77 @@
+<div class="sidebar-container">
+  <aside class="sidebar">
+    <!-- Sidebar Content -->
+    <div class="sidebar-content">
+      <!-- User Panel -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <!-- Logo Image -->
+        <img src="./../../../assets/icons8-book-48.png" alt="Readify Logo" class="logo">
+        <div class="info">
+          <h3>Readify </h3>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/chart">
+              <i class="fas fa-chart-bar icon-green"></i> Chart
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/user">
+              <i class="fas fa-users icon-green"></i> Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-green" routerLink="/book">
+              <i class="fas fa-book icon-green"></i> Books
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/review">
+              <i class="fas fa-star icon-green"></i> Review
+            </a>
+          </li> -->
+          
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/category">
+              <i class="fas fa-list icon-green"></i> Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/order">
+              <i class="fas fa-shopping-cart icon-green"></i> Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/message">
+              <i class="fas fa-envelope icon-green"></i> Messages
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/subscribedUsers">
+              <i class="fas fa-users icon-green"></i> Subscribed Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/deactivated">
+              <i class="fas fa-users icon-green"></i> Deactivated User
+            </a>
+          </li>
+          <li>
+            <a class="nav-link text-white logout-btn" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i> LOG OUT
+            </a>
+          </li>
+        </ul>
+        
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar-content -->
+  </aside>
+</div>
