@@ -94,6 +94,25 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+  handleEdit(category: any, form: NgForm): void {
+    form.setValue({
+      newCategory: category.categoryName,
+    });
+
+    axios
+      .delete(`http://localhost:4000/category/${category._id}`)
+      .then((res) => {
+        if (res.data && res.data.status === 'SUCCESS') {
+          console.log('Category deleted successfully:', res.data.message);
+        } else {
+          console.error('Delete request failed:', res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to delete category:', err);
+      });
+  }
+
   handleSubmit(form: NgForm): void {
     // // Get category name from form
     // let category = form.value.newCategory;
@@ -153,7 +172,7 @@ export class CategoryComponent implements OnInit {
           }
         })
         .catch((err) => {
-          this.errorMessage = 'Failed to create category: ' + err.message;
+          this.errorMessage = err.response.data.message;
           console.error('Failed to create category:', err);
         });
     } else {
