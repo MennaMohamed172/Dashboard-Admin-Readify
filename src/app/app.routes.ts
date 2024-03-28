@@ -11,21 +11,22 @@ import { OrderComponent } from './components/order/order.component';
 import { MessageComponent } from './components/message/message.component';
 import { DeactivatedUsersComponent } from './components/deactivated-users/deactivated-users.component';
 import { SubscribedUsersComponent } from './components/subscribed-users/subscribed-users.component';
+import { userGuard } from './guards/user.guard';
 
 export const routes: Routes = [
-  { path: 'chart', component: ChartComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'review', component: ReviewComponent },
-  { path: 'book', component: BookComponent },
-  { path: 'copoun', component: CopounComponent },
-  { path: 'category', component: CategoryComponent },
-  { path: 'deactivated', component: DeactivatedUsersComponent },
-  { path: 'subscribedUsers', component: SubscribedUsersComponent },
+  { path: 'chart', component: ChartComponent ,canActivate:[userGuard]},
+  { path: 'user', component: UserComponent ,canActivate:[userGuard]},
+  { path: 'review', component: ReviewComponent ,canActivate:[userGuard]},
+  { path: 'book', component: BookComponent ,canActivate:[userGuard]},
+  { path: 'copoun', component: CopounComponent ,canActivate:[userGuard]},
+  { path: 'category', component: CategoryComponent ,canActivate:[userGuard]},
+  { path: 'deactivated', component: DeactivatedUsersComponent,canActivate:[userGuard] },
+  { path: 'subscribedUsers', component: SubscribedUsersComponent ,canActivate:[userGuard]},
 
   { path: 'login', component: LoginComponent },
-  { path: 'order', component: OrderComponent },
+  { path: 'order', component: OrderComponent ,canActivate:[userGuard]},
 
-  { path: 'message', component: MessageComponent },
+  { path: 'message', component: MessageComponent ,canActivate:[userGuard]},
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
