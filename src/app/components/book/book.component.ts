@@ -7,7 +7,7 @@ import {
   FormsModule,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClihent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -15,6 +15,7 @@ import { Ibook } from '../../models/ibook';
 import { Router, RouterModule } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-book',
